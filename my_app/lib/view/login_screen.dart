@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'register_screen.dart';
+import 'package:my_app/view/register_screen.dart';
+import 'home_screen.dart'; // Import the HomeScreen
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -51,7 +52,13 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigate to HomeScreen after successful login
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+                    },
                     child: Text("Sign In"),
                   ),
                   SizedBox(height: 16),
@@ -74,7 +81,8 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegisterScreen()),
+                          builder: (context) => RegisterScreen(),
+                        ),
                       );
                     },
                     child: Text(
@@ -121,7 +129,9 @@ class LoginScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        // Add social sign-in functionality if needed
+      },
       child: Text(label),
     );
   }
