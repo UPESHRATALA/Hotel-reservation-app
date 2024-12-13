@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: 16),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      backgroundColor: Colors.red,
                       padding: EdgeInsets.all(16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
   Widget _buildSocialButton(String label, Color color) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: color,
+        backgroundColor: color,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
