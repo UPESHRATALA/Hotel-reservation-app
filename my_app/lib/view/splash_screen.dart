@@ -1,29 +1,18 @@
+import 'package:my_app/view/onboard_screen.dart';
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
+import 'dart:async';
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    // Navigate to the Login Screen after 3 seconds
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-      );
-    });
-  }
-
-  
-
+class SplashScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Navigate to OnboardingScreen after 2 seconds
+    Timer(Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => OnboardingScreen()),
+      );
+    });
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -34,13 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Center(
-          child: Text(
-            'Sasto Hotel',
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+          child: Image.asset(
+            'assets/images/logo.png',
+            // width: 150,
+            // height: 150,
           ),
         ),
       ),

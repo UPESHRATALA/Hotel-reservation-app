@@ -109,7 +109,7 @@ class RoomsScreen extends StatelessWidget {
           SizedBox(height: 16),
           // Best Places
           _buildSectionHeader('Best Places', context),
-          _buildHorizontalList(['Boudha', 'Ranipark', 'Gangtok', 'Thamel']),
+          _buildHorizontalList(['Boudha', 'Ratnapark', 'Gangabu', 'Thamel']),
           // Best Hotels
           _buildSectionHeader('Best Hotels', context),
           _buildHorizontalList(['Hilton', 'Radisson', 'Mercure', 'Soaltee']),
@@ -132,7 +132,8 @@ class RoomsScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+            Text(title,
+                style: TextStyle(fontSize: 16, color: Colors.grey[600])),
             Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
           ],
         ),
