@@ -6,7 +6,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0; // Bottom navigation selected index
+  int _selectedIndex = 0;
 
   final List<Widget> _pages = [
     RoomsScreen(),
@@ -18,15 +18,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Find room'),
-        backgroundColor: Colors.redAccent,
+        title: Text('Find room', style: Theme.of(context).textTheme.headline1),
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
             icon: Icon(Icons.filter_alt_outlined),
             onPressed: () {
               // Add filter action
             },
-          )
+          ),
         ],
       ),
       body: _pages[_selectedIndex],
@@ -51,8 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Settings',
           ),
         ],
-        selectedItemColor: Colors.redAccent,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
         unselectedItemColor: Colors.grey,
+        backgroundColor: Theme.of(context).bottomAppBarColor,
       ),
     );
   }
@@ -67,14 +68,13 @@ class RoomsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Tabs for Hotels and Villas
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ChoiceChip(
                 label: Text('Hotels'),
                 selected: true,
-                selectedColor: Colors.redAccent,
+                selectedColor: Theme.of(context).primaryColor,
                 onSelected: (bool selected) {},
               ),
               SizedBox(width: 8),
@@ -86,40 +86,34 @@ class RoomsScreen extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16),
-          // Filters
-          _buildFilterOption('Where do you want'),
-          _buildFilterOption('Checkin date & time'),
-          _buildFilterOption('Checkout date & time'),
-          _buildFilterOption('0 Adults, 0 Children, 0 room'),
-          _buildFilterOption('Fan | Air conditioned'),
+          _buildFilterOption('Where do you want', context),
+          _buildFilterOption('Checkin date & time', context),
+          _buildFilterOption('Checkout date & time', context),
+          _buildFilterOption('0 Adults, 0 Children, 0 room', context),
+          _buildFilterOption('Fan | Air conditioned', context),
           SizedBox(height: 16),
-          // Search Button
           Center(
             child: ElevatedButton(
-              onPressed: () {
-                // Add search action
-              },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 60, vertical: 16),
-                backgroundColor: Colors.redAccent,
-              ),
+              onPressed: () {},
               child: Text('Search'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).primaryColor,
+              ),
             ),
           ),
           SizedBox(height: 16),
-          // Best Places
           _buildSectionHeader('Best Places', context),
-          _buildHorizontalList(['Boudha', 'Ratnapark', 'Gangabu', 'Thamel']),
-          // Best Hotels
+          _buildHorizontalList(
+              ['Boudha', 'Ratnapark', 'Gangabu', 'Thamel'], context),
           _buildSectionHeader('Best Hotels', context),
-          _buildHorizontalList(['Hilton', 'Radisson', 'Mercure', 'Soaltee']),
+          _buildHorizontalList(
+              ['Hilton', 'Radisson', 'Mercure', 'Soaltee'], context),
         ],
       ),
     );
   }
 
-  // Reusable filter option
-  Widget _buildFilterOption(String title) {
+  Widget _buildFilterOption(String title, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
@@ -132,8 +126,7 @@ class RoomsScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title,
-                style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+            Text(title, style: Theme.of(context).textTheme.bodyText1),
             Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
           ],
         ),
@@ -141,27 +134,21 @@ class RoomsScreen extends StatelessWidget {
     );
   }
 
-  // Section Header
   Widget _buildSectionHeader(String title, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
+          Text(title, style: Theme.of(context).textTheme.headline2),
           GestureDetector(
-            onTap: () {
-              // Add view all action
-            },
+            onTap: () {},
             child: Text(
               'View All',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-                color: Colors.redAccent,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),
@@ -170,8 +157,7 @@ class RoomsScreen extends StatelessWidget {
     );
   }
 
-  // Horizontal List for places/hotels
-  Widget _buildHorizontalList(List<String> items) {
+  Widget _buildHorizontalList(List<String> items, BuildContext context) {
     return Container(
       height: 120,
       child: ListView.builder(
@@ -189,7 +175,7 @@ class RoomsScreen extends StatelessWidget {
               child: Text(
                 items[index],
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
           );
@@ -204,7 +190,8 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Profile Screen'),
+      child:
+          Text('Profile Screen', style: Theme.of(context).textTheme.headline2),
     );
   }
 }
@@ -214,7 +201,8 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Settings Screen'),
+      child:
+          Text('Settings Screen', style: Theme.of(context).textTheme.headline2),
     );
   }
 }
