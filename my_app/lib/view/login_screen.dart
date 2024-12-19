@@ -120,6 +120,41 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text("Sign In"),
                       ),
+                      SizedBox(height: 16),
+                      Text(
+                        "or sign in using",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16, color: Colors.white70),
+                      ),
+                      SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IconButton(
+                              onPressed: () {}, icon: Icon(Icons.facebook)),
+                          IconButton(onPressed: () {}, icon: Icon(Icons.email)),
+                        ],
+                      ),
+                      SizedBox(height: 16),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegisterScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Don't have an account? Sign Up",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

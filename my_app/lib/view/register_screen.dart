@@ -128,6 +128,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Text("Create Account"),
                         ),
+                        SizedBox(height: 16),
+                        Text(
+                          "or sign in using",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16, color: Colors.white70),
+                        ),
+                        SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            IconButton(
+                                onPressed: () {}, icon: Icon(Icons.facebook)),
+                            IconButton(
+                                onPressed: () {}, icon: Icon(Icons.email))
+                          ],
+                        ),
+                        SizedBox(height: 16),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Already have an account? Sign In",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
