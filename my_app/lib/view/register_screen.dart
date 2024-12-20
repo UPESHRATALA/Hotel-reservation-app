@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/common/snackbar/my_snackbar.dart'; // Import the SnackBar utility
+import 'package:my_app/core/common/snackbar/my_snackbar.dart'; // Import the SnackBar utility
 
 class RegisterScreen extends StatefulWidget {
   @override

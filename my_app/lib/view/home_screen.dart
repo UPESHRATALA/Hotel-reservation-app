@@ -61,6 +61,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // Rooms Tab Content
 class RoomsScreen extends StatelessWidget {
+  final List<String> _placesImages = [
+    'assets/images/boudha.jpg',
+    'assets/images/ratnapark.jpg',
+    'assets/images/gangabu.jpg',
+    'assets/images/thamel.jpg',
+  ];
+
+  final List<String> _hotelsImages = [
+    'assets/images/hilton.jpg',
+    'assets/images/radisson.jpg',
+    'assets/images/mercure.jpg',
+    'assets/images/soaltee.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -68,24 +82,6 @@ class RoomsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ChoiceChip(
-                label: Text('Hotels'),
-                selected: true,
-                selectedColor: Theme.of(context).primaryColor,
-                onSelected: (bool selected) {},
-              ),
-              SizedBox(width: 8),
-              ChoiceChip(
-                label: Text('Villas'),
-                selected: false,
-                onSelected: (bool selected) {},
-              ),
-            ],
-          ),
-          SizedBox(height: 16),
           _buildFilterOption('Where do you want', context),
           _buildFilterOption('Checkin date & time', context),
           _buildFilterOption('Checkout date & time', context),
@@ -94,7 +90,11 @@ class RoomsScreen extends StatelessWidget {
           SizedBox(height: 16),
           Center(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Searching for rooms...')),
+                );
+              },
               child: Text('Search'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -103,32 +103,50 @@ class RoomsScreen extends StatelessWidget {
           ),
           SizedBox(height: 16),
           _buildSectionHeader('Best Places', context),
-          _buildHorizontalList(
-              ['Boudha', 'Ratnapark', 'Gangabu', 'Thamel'], context),
+          _buildImageList(_placesImages, context),
           _buildSectionHeader('Best Hotels', context),
-          _buildHorizontalList(
-              ['Hilton', 'Radisson', 'Mercure', 'Soaltee'], context),
+          _buildImageList(_hotelsImages, context),
         ],
       ),
     );
   }
 
   Widget _buildFilterOption(String title, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey[300]!),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.bodyText1),
-            Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
-          ],
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.all(16.0),
+              child: Text('Filter options for $title',
+                  style: Theme.of(context).textTheme.bodyText1),
+            );
+          },
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 6,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title, style: Theme.of(context).textTheme.bodyText1),
+              Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
+            ],
+          ),
         ),
       ),
     );
@@ -157,25 +175,35 @@ class RoomsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHorizontalList(List<String> items, BuildContext context) {
+  Widget _buildImageList(List<String> images, BuildContext context) {
     return Container(
-      height: 120,
+      height: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: items.length,
+        itemCount: images.length,
         itemBuilder: (context, index) {
-          return Container(
-            width: 120,
-            margin: EdgeInsets.only(right: 16),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Center(
-              child: Text(
-                items[index],
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyText2,
+          return GestureDetector(
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Tapped on item ${index + 1}')),
+              );
+            },
+            child: Container(
+              width: 200,
+              margin: EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+                image: DecorationImage(
+                  image: AssetImage(images[index]),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           );

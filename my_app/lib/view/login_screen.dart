@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/view/register_screen.dart';
-import 'package:my_app/common/snackbar/my_snackbar.dart'; // Import the SnackBar utility
+import 'package:my_app/core/common/snackbar/my_snackbar.dart'; // Import the SnackBar utility
 import 'home_screen.dart'; // Import the HomeScreen
 
 class LoginScreen extends StatefulWidget {
@@ -94,7 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 16),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          backgroundColor: Colors.black
+                          ,
                           padding: EdgeInsets.all(16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
